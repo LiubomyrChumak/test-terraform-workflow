@@ -1,5 +1,9 @@
-resource "null_resource" "greeting" {
-  provisioner "local-exec" {
-    command = "python -c 'print(\"Hello from Terraform!\")'"
-  }
+resource "local_file" "greeting_file" {
+  filename = "greeting.py"
+  content  = <<EOT
+def greet():
+    print("Hello, World!")
+
+greet()
+EOT
 }
